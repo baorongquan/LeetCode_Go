@@ -37,20 +37,17 @@ func main() {
 
 func fizzBuzz(n int) []string {
 	var arr []string = make([]string, n)
-	Fizz := "Fizz"
-	Buzz := "Buzz"
-	FizzBuzz := "FizzBuzz"
 	for i := 1; i <= n; i++ {
 		if i%15 == 0 {
-			arr[i-1] = FizzBuzz
+			arr[i-1] = "FizzBuzz"
 			continue
 		}
 		if i%3 == 0 {
-			arr[i-1] = Fizz
+			arr[i-1] = "Fizz"
 			continue
 		}
 		if i%5 == 0 {
-			arr[i-1] = Buzz
+			arr[i-1] = "Buzz"
 			continue
 		}
 		arr[i-1] = strconv.Itoa(i)
