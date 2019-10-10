@@ -7,19 +7,17 @@
 // @lc code=start
 func removeElement(nums []int, val int) int {
 	l := 0
-	for i := 0; i < len(nums); i++ {
+	for i := 0; i < len(nums)-l; i++ {
 		if nums[i] == val {
 			l++
-		}
-	}
-
-	for i := 0; i < len(nums); i++ {
-		if nums[i] == val {
-			for j := len(nums) - 1; j > i; j-- {
+			for j := len(nums) - l; j > i; j-- {
 				if nums[j] == val {
+					l++
 					continue
+				} else {
+					nums[i], nums[j] = nums[j], nums[i]
+					break
 				}
-				nums[i], nums[j] = nums[j], nums[i]
 			}
 		}
 	}
