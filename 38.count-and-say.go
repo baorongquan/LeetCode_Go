@@ -8,30 +8,27 @@ import "strconv"
 
 // @lc code=start
 func countAndSay(n int) string {
-	s := "1"
+	result := "1"
 	if n > 1 {
 		for i := 1; i < n; i++ {
-			s = countPrev(s)
+			preSay := make([]byte, 0)
+			count := 1
+			b := result[0]
+			for i := 1; i < len(result); i++ {
+				if result[i] == b {
+					count++
+				} else {
+					preSay = append(preSay, []byte(strconv.Itoa(count))...)
+					preSay = append(preSay, b)
+					b = result[i]
+					count = 1
+				}
+			}
+			preSay = append(preSay, []byte(strconv.Itoa(count))...)
+			preSay = append(preSay, b)
+			result = string(preSay)
 		}
 	}
-	return s
-}
-
-// countPrev 数之前的字符串
-func countPrev(s string) string {
-	result := ""
-	count := 1
-	b := s[0]
-	for i := 1; i < len(s); i++ {
-		if s[i] == b {
-			count++
-		} else {
-			result += strconv.Itoa(count) + string(b)
-			b = s[i]
-			count = 1
-		}
-	}
-	result += strconv.Itoa(count) + string(b)
 	return result
 }
 
