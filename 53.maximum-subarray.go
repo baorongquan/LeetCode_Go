@@ -10,27 +10,19 @@ func maxSubArray(nums []int) int {
 		return 0
 	}
 
-	var premax, max int
-	premax = nums[0]
-	for i := range nums {
-		if max+nums[i] > 0 {
-			if max > 0 {
-				max += nums[i]
-			} else {
-				max = nums[i]
-			}
+	max, sum := nums[0], nums[0]
+	for i := 1; i < len(nums); i++ {
+		if sum < 0 {
+			sum = nums[i]
 		} else {
-			if premax <= 0 {
-				max = nums[i]
-			} else {
-				max = 0
-			}
+			sum += nums[i]
 		}
-		if max > premax {
-			premax = max
+
+		if sum > max {
+			max = sum
 		}
 	}
-	return premax
+	return max
 }
 
 // @lc code=end
